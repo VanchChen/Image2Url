@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -23,8 +23,13 @@
                 </customObject>
                 <menu id="p0u-6b-Swo">
                     <items>
-                        <menuItem title="Quit" id="BhC-tk-V8r">
-                            <modifierMask key="keyEquivalentModifierMask"/>
+                        <menuItem title="Upload" keyEquivalent="u" id="8Lk-cr-IJ9">
+                            <connections>
+                                <action selector="didTapUpload:" target="i84-0Z-QUu" id="ydR-nE-ygk"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem isSeparatorItem="YES" id="eV2-1g-cTw"/>
+                        <menuItem title="Quit" keyEquivalent="q" id="BhC-tk-V8r">
                             <connections>
                                 <action selector="didTapQuit:" target="i84-0Z-QUu" id="Y9G-sO-oL0"/>
                             </connections>
