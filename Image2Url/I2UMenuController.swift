@@ -61,6 +61,7 @@ class I2UMenuController: NSObject {
         
         let signInWindowController = storyBoard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("SignInWindowController")) as! NSWindowController
         signInWindowController.window!.orderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
     }
     
     @IBAction func didTapCompress(_ sender: NSMenuItem) {
