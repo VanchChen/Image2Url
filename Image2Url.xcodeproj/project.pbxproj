@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D657466F21AD607D00E2712D /* I2USignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657466E21AD607D00E2712D /* I2USignInController.swift */; };
 		D657F831219D06CD006836D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657F830219D06CD006836D2 /* AppDelegate.swift */; };
 		D657F835219D06CE006836D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D657F834219D06CE006836D2 /* Assets.xcassets */; };
 		D657F838219D06CE006836D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D657F836219D06CE006836D2 /* Main.storyboard */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D657466E21AD607D00E2712D /* I2USignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = I2USignInController.swift; sourceTree = "<group>"; };
 		D657F82D219D06CD006836D2 /* Image2Url.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Image2Url.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D657F830219D06CD006836D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D657F834219D06CE006836D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 			children = (
 				D657F830219D06CD006836D2 /* AppDelegate.swift */,
 				D6766F5B219D0CDD005CA3DC /* I2UMenuController.swift */,
+				D657466E21AD607D00E2712D /* I2USignInController.swift */,
 				D657F834219D06CE006836D2 /* Assets.xcassets */,
 				D657F836219D06CE006836D2 /* Main.storyboard */,
 				D657F839219D06CE006836D2 /* Info.plist */,
@@ -135,6 +138,7 @@
 			files = (
 				D657F831219D06CD006836D2 /* AppDelegate.swift in Sources */,
 				D6766F5C219D0CDD005CA3DC /* I2UMenuController.swift in Sources */,
+				D657466F21AD607D00E2712D /* I2USignInController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +282,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = vanch.Image2Url;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -297,6 +302,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = vanch.Image2Url;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
