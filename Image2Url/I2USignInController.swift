@@ -18,6 +18,27 @@ class I2USignInController : NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //载入数据
+        if let appID = I2UUDKey.AppID.string() {
+            AppIDTextField.stringValue = appID
+        }
+        
+        if let region = I2UUDKey.Region.string() {
+            RegionTextField.stringValue = region
+        }
+        
+        if let bucket = I2UUDKey.Bucket.string() {
+            BucketTextField.stringValue = bucket
+        }
+        
+        if let key = I2UUDKey.SecretKey.string() {
+            SecretKeyTextField.stringValue = key
+        }
+        
+        if let id = I2UUDKey.SecretID.string() {
+            SecretIDTextField.stringValue = id
+        }
+        
     }
     
     override func viewDidAppear() {
@@ -31,5 +52,37 @@ class I2USignInController : NSViewController {
     }
     
     @IBAction func didTapConfirm(_ sender: NSButton) {
+        if AppIDTextField.stringValue.count == 0 {
+            AppIDTextField.becomeFirstResponder()
+            return;
+        }
+        
+        if RegionTextField.stringValue.count == 0 {
+            RegionTextField.becomeFirstResponder()
+            return;
+        }
+        
+        if BucketTextField.stringValue.count == 0 {
+            BucketTextField.becomeFirstResponder()
+            return;
+        }
+        
+        if SecretKeyTextField.stringValue.count == 0 {
+            SecretKeyTextField.becomeFirstResponder()
+            return;
+        }
+        
+        if SecretIDTextField.stringValue.count == 0 {
+            SecretIDTextField.becomeFirstResponder()
+            return;
+        }
+        
+        I2UUDKey.AppID.set(value: AppIDTextField.stringValue)
+        I2UUDKey.Region.set(value: RegionTextField.stringValue)
+        I2UUDKey.Bucket.set(value: BucketTextField.stringValue)
+        I2UUDKey.SecretKey.set(value: SecretKeyTextField.stringValue)
+        I2UUDKey.SecretID.set(value: SecretIDTextField.stringValue)
+        
+        self.view.window!.close()
     }
 }

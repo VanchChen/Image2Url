@@ -8,26 +8,6 @@
 
 import Cocoa
 
-enum I2UUDKey : String {
-    case Compress, Setup, AppID, Region, Bucket, SecretKey, SecretID
-    
-    func set(value : Bool) {
-        UserDefaults.standard.set(value, forKey: self.rawValue)
-    }
-    
-    func set(value : String?) {
-        UserDefaults.standard.set(value, forKey: self.rawValue)
-    }
-
-    func bool() -> Bool {
-        return UserDefaults.standard.bool(forKey: self.rawValue)
-    }
-    
-    func string() -> String? {
-        return UserDefaults.standard.string(forKey: self.rawValue)
-    }
-}
-
 class I2UMenuController: NSObject {
     let maxPixelHeight = 1280
     let maxFactor = 0.8
@@ -35,7 +15,6 @@ class I2UMenuController: NSObject {
     
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var compressMenuItem: NSMenuItem!
-    
     
     let statusItem = NSStatusBar.system.statusItem(withLength: 27)
     let panel = NSOpenPanel()
@@ -47,6 +26,8 @@ class I2UMenuController: NSObject {
         self.setupUserData()
         
         self.setupUI()
+        
+        I2UDataManager.shared.signIn()
     }
     
     //MARK:- Action Methods
