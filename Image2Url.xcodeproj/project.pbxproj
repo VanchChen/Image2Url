@@ -13,6 +13,7 @@
 		D657F838219D06CE006836D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D657F836219D06CE006836D2 /* Main.storyboard */; };
 		D6766F5C219D0CDD005CA3DC /* I2UMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6766F5B219D0CDD005CA3DC /* I2UMenuController.swift */; };
 		D6BFA53621B4FEA800ED251F /* QCloudMacOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BFA53221B4E08200ED251F /* QCloudMacOS.framework */; };
+		D6BFA53821B530C500ED251F /* NSTextField+I2U.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BFA53721B530C500ED251F /* NSTextField+I2U.swift */; };
 		D6EBB02A21B0DB90001B0E16 /* I2UUserDefaultsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EBB02921B0DB90001B0E16 /* I2UUserDefaultsEnum.swift */; };
 		D6EBB02C21B0DEA1001B0E16 /* I2UDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EBB02B21B0DEA1001B0E16 /* I2UDataManager.swift */; };
 /* End PBXBuildFile section */
@@ -28,6 +29,7 @@
 		D6766F5B219D0CDD005CA3DC /* I2UMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = I2UMenuController.swift; sourceTree = "<group>"; };
 		D6BFA53221B4E08200ED251F /* QCloudMacOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = QCloudMacOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6BFA53421B4E0FB00ED251F /* QCloudMacOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QCloudMacOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		D6BFA53721B530C500ED251F /* NSTextField+I2U.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextField+I2U.swift"; sourceTree = "<group>"; };
 		D6EBB02921B0DB90001B0E16 /* I2UUserDefaultsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = I2UUserDefaultsEnum.swift; sourceTree = "<group>"; };
 		D6EBB02B21B0DEA1001B0E16 /* I2UDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = I2UDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,6 +76,7 @@
 				D6EBB02921B0DB90001B0E16 /* I2UUserDefaultsEnum.swift */,
 				D6EBB02B21B0DEA1001B0E16 /* I2UDataManager.swift */,
 				D6BFA53421B4E0FB00ED251F /* QCloudMacOS-Bridging-Header.h */,
+				D6BFA53721B530C500ED251F /* NSTextField+I2U.swift */,
 			);
 			path = Image2Url;
 			sourceTree = "<group>";
@@ -118,6 +121,11 @@
 				TargetAttributes = {
 					D657F82C219D06CD006836D2 = {
 						CreatedOnToolsVersion = 9.3;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -157,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6EBB02A21B0DB90001B0E16 /* I2UUserDefaultsEnum.swift in Sources */,
+				D6BFA53821B530C500ED251F /* NSTextField+I2U.swift in Sources */,
 				D6EBB02C21B0DEA1001B0E16 /* I2UDataManager.swift in Sources */,
 				D657F831219D06CD006836D2 /* AppDelegate.swift in Sources */,
 				D6766F5C219D0CDD005CA3DC /* I2UMenuController.swift in Sources */,

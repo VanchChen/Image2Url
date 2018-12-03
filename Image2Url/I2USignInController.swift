@@ -15,6 +15,8 @@ class I2USignInController : NSViewController {
     @IBOutlet weak var SecretKeyTextField: NSTextField!
     @IBOutlet weak var SecretIDTextField: NSTextField!
     
+    public weak var menuController : I2UMenuController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -82,6 +84,10 @@ class I2USignInController : NSViewController {
         I2UUDKey.Bucket.set(value: BucketTextField.stringValue)
         I2UUDKey.SecretKey.set(value: SecretKeyTextField.stringValue)
         I2UUDKey.SecretID.set(value: SecretIDTextField.stringValue)
+        
+        I2UDataManager.shared.setup()
+        
+        menuController.signInMenuItem.title = "Sign Out"
         
         self.view.window!.close()
     }

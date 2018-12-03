@@ -20,6 +20,7 @@
                 <customObject id="i84-0Z-QUu" customClass="I2UMenuController" customModule="Image2Url" customModuleProvider="target">
                     <connections>
                         <outlet property="compressMenuItem" destination="9RC-HF-0ZY" id="BO5-Ec-0Sh"/>
+                        <outlet property="signInMenuItem" destination="fL9-kh-ZJM" id="6qY-1l-VHw"/>
                         <outlet property="statusMenu" destination="p0u-6b-Swo" id="LY9-r2-Kll"/>
                     </connections>
                 </customObject>
@@ -193,7 +194,7 @@ Gw
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cam-zc-xyx">
-                                <rect key="frame" x="221" y="13" width="80" height="42"/>
+                                <rect key="frame" x="221" y="18" width="80" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Confirm" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sHs-FK-tWR">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

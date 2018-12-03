@@ -9,7 +9,7 @@
 import Foundation
 
 enum I2UUDKey : String {
-    case Compress, Setup, AppID, Region, Bucket, SecretKey, SecretID
+    case Compress, Setup, AppID, Region, Bucket, SecretKey, SecretID, Login
     
     func set(value : Bool) {
         UserDefaults.standard.set(value, forKey: self.rawValue)
@@ -25,5 +25,13 @@ enum I2UUDKey : String {
     
     func string() -> String? {
         return UserDefaults.standard.string(forKey: self.rawValue)
+    }
+    
+    func clearSettings() {
+        I2UUDKey.AppID.set(value: nil)
+        I2UUDKey.Region.set(value: nil)
+        I2UUDKey.Bucket.set(value: nil)
+        I2UUDKey.SecretKey.set(value: nil)
+        I2UUDKey.SecretID.set(value: nil)
     }
 }

@@ -15,6 +15,7 @@ class I2UMenuController: NSObject {
     
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var compressMenuItem: NSMenuItem!
+    @IBOutlet weak var signInMenuItem: NSMenuItem!
     
     let statusItem = NSStatusBar.system.statusItem(withLength: 27)
     let panel = NSOpenPanel()
@@ -26,8 +27,6 @@ class I2UMenuController: NSObject {
         self.setupUserData()
         
         self.setupUI()
-        
-        I2UDataManager.shared.signIn()
     }
     
     //MARK:- Action Methods
@@ -36,6 +35,15 @@ class I2UMenuController: NSObject {
     }
     
     @IBAction func didTapSignIn(_ sender: NSMenuItem) {
+        if I2UUDKey.Login.bool() {
+            //Sign Out
+            I2UUDKey.Login.clearSettings()
+            I2UUDKey.Login.set(value: false)
+            signInMenuItem.title = "Sign In"
+            
+            return
+        }
+        
         guard let storyBoard = NSStoryboard.main else {
             return;
         }
@@ -43,6 +51,9 @@ class I2UMenuController: NSObject {
         let signInWindowController = storyBoard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("SignInWindowController")) as! NSWindowController
         signInWindowController.window!.orderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
+        
+        let signInViewController = signInWindowController.window?.contentViewController as! I2USignInController
+        signInViewController.menuController = self
     }
     
     @IBAction func didTapCompress(_ sender: NSMenuItem) {
@@ -61,7 +72,8 @@ class I2UMenuController: NSObject {
                     imageData = nil
                 }
                 if imageData != nil && imageData!.count > 0 {
-                    self.handle(imageData: imageData!)
+                    //self.handle(imageData: imageData!)
+                    I2UDataManager.shared.uploadData(imageData! as NSData)
                 }
             }
         }
@@ -92,18 +104,18 @@ class I2UMenuController: NSObject {
             return
         }
         
-        if I2UUDKey.AppID.string() != nil,
-            I2UUDKey.Bucket.string() != nil,
-            I2UUDKey.Region.string() != nil,
-            I2UUDKey.SecretID.string() != nil,
-            I2UUDKey.SecretKey.string() != nil {
-            //登陆
-        }
+        I2UDataManager.shared.setup()
     }
     
     func setupUI() {
         let isCompress = I2UUDKey.Compress.bool()
         compressMenuItem.state = isCompress ? NSControl.StateValue.on : NSControl.StateValue.off
+        
+        if I2UUDKey.Login.bool() {
+            signInMenuItem.title = "Sign Out"
+        } else {
+            signInMenuItem.title = "Sign In"
+        }
     }
     
     //MARK:- Image Handler
