@@ -12,6 +12,7 @@
 		D657F835219D06CE006836D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D657F834219D06CE006836D2 /* Assets.xcassets */; };
 		D657F838219D06CE006836D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D657F836219D06CE006836D2 /* Main.storyboard */; };
 		D6766F5C219D0CDD005CA3DC /* I2UMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6766F5B219D0CDD005CA3DC /* I2UMenuController.swift */; };
+		D6BFA53621B4FEA800ED251F /* QCloudMacOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BFA53221B4E08200ED251F /* QCloudMacOS.framework */; };
 		D6EBB02A21B0DB90001B0E16 /* I2UUserDefaultsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EBB02921B0DB90001B0E16 /* I2UUserDefaultsEnum.swift */; };
 		D6EBB02C21B0DEA1001B0E16 /* I2UDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EBB02B21B0DEA1001B0E16 /* I2UDataManager.swift */; };
 /* End PBXBuildFile section */
@@ -25,6 +26,8 @@
 		D657F839219D06CE006836D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D657F83A219D06CE006836D2 /* Image2Url.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Image2Url.entitlements; sourceTree = "<group>"; };
 		D6766F5B219D0CDD005CA3DC /* I2UMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = I2UMenuController.swift; sourceTree = "<group>"; };
+		D6BFA53221B4E08200ED251F /* QCloudMacOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = QCloudMacOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6BFA53421B4E0FB00ED251F /* QCloudMacOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QCloudMacOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		D6EBB02921B0DB90001B0E16 /* I2UUserDefaultsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = I2UUserDefaultsEnum.swift; sourceTree = "<group>"; };
 		D6EBB02B21B0DEA1001B0E16 /* I2UDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = I2UDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -34,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6BFA53621B4FEA800ED251F /* QCloudMacOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +49,7 @@
 			children = (
 				D657F82F219D06CD006836D2 /* Image2Url */,
 				D657F82E219D06CD006836D2 /* Products */,
+				D6BFA53121B4E08200ED251F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,8 +73,17 @@
 				D657F83A219D06CE006836D2 /* Image2Url.entitlements */,
 				D6EBB02921B0DB90001B0E16 /* I2UUserDefaultsEnum.swift */,
 				D6EBB02B21B0DEA1001B0E16 /* I2UDataManager.swift */,
+				D6BFA53421B4E0FB00ED251F /* QCloudMacOS-Bridging-Header.h */,
 			);
 			path = Image2Url;
+			sourceTree = "<group>";
+		};
+		D6BFA53121B4E08200ED251F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D6BFA53221B4E08200ED251F /* QCloudMacOS.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,6 +307,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = vanch.Image2Url;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Image2Url/QCloudMacOS-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -313,6 +328,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = vanch.Image2Url;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Image2Url/QCloudMacOS-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;

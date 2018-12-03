@@ -28,7 +28,8 @@ open class I2UDataManager {
             return false
         }
         
-        
+        let configuration = QCloudServiceConfiguration()
+        configuration.appID = appID
         
         return false
     }
