@@ -35,3 +35,10 @@ enum I2UUDKey : String {
         I2UUDKey.SecretID.set(value: nil)
     }
 }
+
+enum CompressError : Error {
+    case NoImage
+    case OverSize(size : Int)
+    case ResizeNotWork
+    case NotKnown
+}

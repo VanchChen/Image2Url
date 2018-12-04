@@ -9,9 +9,9 @@
 import Cocoa
 
 class I2UMenuController: NSObject {
-    let maxPixelHeight = 1280
-    let maxFactor = 0.8
+    let maxFactor = 0.75
     let maxSize = 500 * 1024
+    let maxWidth : CGFloat = 128.0
     
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var compressMenuItem: NSMenuItem!
@@ -65,15 +65,27 @@ class I2UMenuController: NSObject {
     @IBAction func didTapUpload(_ sender: NSMenuItem) {
         panel.beginSheetModal(for: NSApplication.shared.windows.first!) { response -> Void in
             if response.rawValue == 1 {
-                var imageData : Data?
-                do {
-                    imageData = try Data(contentsOf: self.panel.url!)
-                } catch _ {
-                    imageData = nil
+                let imageData = try? Data(contentsOf: self.panel.url!)
+                
+                var compressData : Data? = nil
+                if I2UUDKey.Compress.bool() == false {
+                    compressData = imageData
+                } else {
+                    do {
+                        compressData = try self.compressImage(imageData)
+                    } catch CompressError.NoImage {
+                        print("Image Not Exist")
+                    } catch CompressError.NotKnown {
+                        print("Image Compress Error")
+                    } catch CompressError.OverSize(let size) {
+                        print("Image over size of \(size)")
+                    } catch CompressError.ResizeNotWork {
+                        print("Image resize not work")
+                    } catch _ {}
                 }
-                if imageData != nil && imageData!.count > 0 {
-                    //self.handle(imageData: imageData!)
-                    I2UDataManager.shared.uploadData(imageData! as NSData)
+                
+                if compressData != nil && compressData!.count > 0 {
+                    I2UDataManager.shared.uploadData(compressData! as NSData)
                 }
             }
         }
@@ -94,7 +106,7 @@ class I2UMenuController: NSObject {
         panel.canChooseDirectories = false
         panel.canChooseFiles = true
         panel.allowsMultipleSelection = false
-        panel.allowedFileTypes = Array(arrayLiteral: "jpg", "png", "jpeg")
+        panel.allowedFileTypes = ["jpg", "png", "jpeg"]
     }
     
     func setupUserData() {
@@ -118,97 +130,53 @@ class I2UMenuController: NSObject {
         }
     }
     
-    //MARK:- Image Handler
-    func handle(imageData: Data) {
-        guard let image = NSImage(data: imageData) else {
-            return
+    //MARK:- Compress Image
+    func compressImage(_ imageData: Data?) throws -> Data? {
+        guard var compressData = imageData else {
+            throw CompressError.NoImage
         }
         
-        if imageData.count < maxSize {
-            self.upload2Cloud(image: image)
+        if compressData.count == 0 {
+            throw CompressError.NoImage
         }
         
-        var imageSize = image.size
-        if imageSize.height > 1280 {
-            //如果高度大于1280，就缩小到这个尺寸
-            imageSize.width = 1280 / imageSize.height * imageSize.width
-            imageSize.height = 1280
-        }
+        let rep = NSBitmapImageRep(data: compressData)
         
-        guard let rep = NSBitmapImageRep.init(bitmapDataPlanes: nil,
-                                        pixelsWide: Int(imageSize.width),
-                                        pixelsHigh: Int(imageSize.height),
-                                        bitsPerSample: 8,
-                                        samplesPerPixel: 4,
-                                        hasAlpha: true,
-                                        isPlanar: false,
-                                        colorSpaceName: NSColorSpaceName.calibratedRGB,
-                                        bytesPerRow: 0,
-                                        bitsPerPixel: 0) else {
-                                            return;
-        }
-        
-        guard let ctx = NSGraphicsContext.current?.cgContext else {
-            return;
-        }
-        
-        ctx.interpolationQuality = .high
-        image.draw(in: NSMakeRect(0, 0, imageSize.width, imageSize.height),
-                    from: NSMakeRect(0, 0, image.size.width, image.size.height),
-                   operation: .copy, fraction: 1)
-        
-        let newImage = NSImage.init(size: imageSize)
-        newImage.addRepresentation(rep)
-        
-        rep.representation(using: .jpeg, properties: Dictionary(dictionaryLiteral: (NSBitmapImageRep.PropertyKey.compressionFactor, 0.8)))
-        
-        
-        /*
-            // Compress by quality
-            CGFloat compression = 1;
-            NSData *data = UIImageJPEGRepresentation(self, compression);
-            //NSLog(@"Before compressing quality, image size = %ld KB",data.length/1024);
-            if (data.length < maxLength) return data;
-            
-            CGFloat max = 1;
-            CGFloat min = 0;
-            for (int i = 0; i < 6; ++i) {
-                compression = (max + min) / 2;
-                data = UIImageJPEGRepresentation(self, compression);
-                //NSLog(@"Compression = %.1f", compression);
-                //NSLog(@"In compressing quality loop, image size = %ld KB", data.length / 1024);
-                if (data.length < maxLength * 0.9) {
-                    min = compression;
-                } else if (data.length > maxLength) {
-                    max = compression;
-                } else {
-                    break;
+        var compressionFactor = 0.95
+        while compressData.count > maxSize &&
+            compressionFactor >= maxFactor {
+                let repData = rep?.representation(using: .jpeg, properties: [.compressionFactor : compressionFactor])
+                if repData == nil {
+                    throw CompressError.NotKnown
                 }
-            }
-            //NSLog(@"After compressing quality, image size = %ld KB", data.length / 1024);
-            if (data.length < maxLength) return data;
-            UIImage *resultImage = [UIImage imageWithData:data];
-            // Compress by size
-            NSUInteger lastDataLength = 0;
-            while (data.length > maxLength && data.length != lastDataLength) {
-                lastDataLength = data.length;
-                CGFloat ratio = (CGFloat)maxLength / data.length;
-                //NSLog(@"Ratio = %.1f", ratio);
-                CGSize size = CGSizeMake((NSUInteger)(resultImage.size.width * sqrtf(ratio)),
-                                         (NSUInteger)(resultImage.size.height * sqrtf(ratio))); // Use NSUInteger to prevent white blank
-                UIGraphicsBeginImageContext(size);
-                [resultImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
-                resultImage = UIGraphicsGetImageFromCurrentImageContext();
-                UIGraphicsEndImageContext();
-                data = UIImageJPEGRepresentation(resultImage, compression);
-                //NSLog(@"In compressing size loop, image size = %ld KB", data.length / 1024);
-            }
-            //NSLog(@"After compressing size loop, image size = %ld KB", data.length / 1024);
- */
-    }
-    
-    func upload2Cloud(image: NSImage) {
+                compressData = repData!
+                compressionFactor -= 0.05
+        }
         
+        if compressData.count == 0 {
+            throw CompressError.NotKnown
+        }
+        
+        if compressData.count < maxSize {
+            return compressData
+        }
+        
+        //resize
+        guard let image = NSImage(data: compressData) else {
+            throw CompressError.NotKnown
+        }
+        if image.size.width > maxWidth {
+            let newSize = NSSize(width: maxWidth, height: maxWidth / image.size.width * image.size.height)
+            
+            if let resizeData = image.resized(to: newSize),
+                resizeData.count < maxSize {
+                return resizeData
+            }
+            
+            throw CompressError.ResizeNotWork
+        }
+        
+        throw CompressError.OverSize(size: compressData.count)
     }
 }
 

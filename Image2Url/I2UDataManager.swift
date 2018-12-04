@@ -8,13 +8,15 @@
 
 import Foundation
 
-open class I2UDataManager : NSObject, QCloudSignatureProvider {
+open class I2UDataManager : NSObject, QCloudSignatureProvider, NSUserNotificationCenterDelegate {
     
     static let shared = I2UDataManager()
     
     public func setup() {
         //Attamp 2 sign in
         I2UUDKey.Login.set(value: self.signIn())
+        
+        NSUserNotificationCenter.default.delegate = self
     }
     
     public func signIn() -> Bool {
@@ -40,6 +42,7 @@ open class I2UDataManager : NSObject, QCloudSignatureProvider {
         configuration.appID = appID
         let endPoint = QCloudCOSXMLEndPoint()
         endPoint.regionName = region
+        endPoint.useHTTPS = true
         configuration.endpoint = endPoint
         
         QCloudCOSXMLService.registerDefaultCOSXML(with: configuration)
@@ -69,18 +72,45 @@ open class I2UDataManager : NSObject, QCloudSignatureProvider {
             return
         }
         
+        let timeNum = String(Int(Date().timeIntervalSince1970))
+        let randomNum = String(Int(arc4random_uniform(100)))
         let put = QCloudCOSXMLUploadObjectRequest<NSData>()
-        put.object = "a.jpg"
+        put.object = "blog/pic_\(timeNum)_\(randomNum).jpg"
         put.bucket = bucket
         put.body = data
         put.sendProcessBlock = {(bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) in
             print("Sent:\(bytesSent) total:\(totalBytesSent) expect:\(totalBytesExpectedToSend)")
         }
-        put.finishBlock = {(outputObject: Any?, error: Error?) in
+        put.setFinish { (outputObject: QCloudUploadObjectResult?, error: Error?) in
             if outputObject != nil {
-                print("uploadSuccess:\(outputObject ?? "nil")")
+                let url = outputObject!.location
+                print("upload success \(url)")
+                
+                //save to pasteboard
+                let pasteUrl = "[](\(url))"
+                NSPasteboard.general.clearContents()
+                NSPasteboard.general.setString(pasteUrl, forType: .string)
+                
+                //push local notification
+                let notification = NSUserNotification()
+                notification.title = "Upload Success"
+                notification.informativeText = url
+                NSUserNotificationCenter.default.deliver(notification)
+            } else {
+                print("upload error!")
             }
         }
         QCloudCOSTransferMangerService.defaultCOSTransferManager().uploadObject(put as! QCloudCOSXMLUploadObjectRequest<AnyObject>)
+    }
+    
+    public func userNotificationCenter(_ center: NSUserNotificationCenter, didActivate notification: NSUserNotification) {
+        NSPasteboard.general.clearContents()
+        
+        let pasteUrl = "[](\(notification.informativeText!))"
+        NSPasteboard.general.setString(pasteUrl, forType: .string)
+    }
+    
+    public func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
+        return true
     }
 }
