@@ -87,7 +87,7 @@ open class I2UDataManager : NSObject, QCloudSignatureProvider, NSUserNotificatio
                 print("upload success \(url)")
                 
                 //save to pasteboard
-                let pasteUrl = "[](\(url))"
+                let pasteUrl = "![](\(url))"
                 NSPasteboard.general.clearContents()
                 NSPasteboard.general.setString(pasteUrl, forType: .string)
                 
@@ -106,7 +106,7 @@ open class I2UDataManager : NSObject, QCloudSignatureProvider, NSUserNotificatio
     public func userNotificationCenter(_ center: NSUserNotificationCenter, didActivate notification: NSUserNotification) {
         NSPasteboard.general.clearContents()
         
-        let pasteUrl = "[](\(notification.informativeText!))"
+        let pasteUrl = "![](\(notification.informativeText!))"
         NSPasteboard.general.setString(pasteUrl, forType: .string)
     }
     
