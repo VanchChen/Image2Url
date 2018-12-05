@@ -14,9 +14,24 @@
 		D6766F5C219D0CDD005CA3DC /* I2UMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6766F5B219D0CDD005CA3DC /* I2UMenuController.swift */; };
 		D6BFA53621B4FEA800ED251F /* QCloudMacOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BFA53221B4E08200ED251F /* QCloudMacOS.framework */; };
 		D6BFA53821B530C500ED251F /* I2UExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BFA53721B530C500ED251F /* I2UExtension.swift */; };
+		D6C30E8C21B760AC00EDAD6C /* QCloudMacOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D6BFA53221B4E08200ED251F /* QCloudMacOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D6EBB02A21B0DB90001B0E16 /* I2UUserDefaultsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EBB02921B0DB90001B0E16 /* I2UUserDefaultsEnum.swift */; };
 		D6EBB02C21B0DEA1001B0E16 /* I2UDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EBB02B21B0DEA1001B0E16 /* I2UDataManager.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D6C30E8D21B760AC00EDAD6C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D6C30E8C21B760AC00EDAD6C /* QCloudMacOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		D657466E21AD607D00E2712D /* I2USignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = I2USignInController.swift; sourceTree = "<group>"; };
@@ -99,6 +114,7 @@
 				D657F829219D06CD006836D2 /* Sources */,
 				D657F82A219D06CD006836D2 /* Frameworks */,
 				D657F82B219D06CD006836D2 /* Resources */,
+				D6C30E8D21B760AC00EDAD6C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
