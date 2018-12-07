@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D625369721BA208C0014E5EF /* I2UCompressUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D625369621BA208C0014E5EF /* I2UCompressUtility.swift */; };
 		D657466F21AD607D00E2712D /* I2USignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657466E21AD607D00E2712D /* I2USignInController.swift */; };
 		D657F831219D06CD006836D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657F830219D06CD006836D2 /* AppDelegate.swift */; };
 		D657F835219D06CE006836D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D657F834219D06CE006836D2 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D625369621BA208C0014E5EF /* I2UCompressUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = I2UCompressUtility.swift; sourceTree = "<group>"; };
 		D657466E21AD607D00E2712D /* I2USignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = I2USignInController.swift; sourceTree = "<group>"; };
 		D657F82D219D06CD006836D2 /* Image2Url.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Image2Url.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D657F830219D06CD006836D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				D6EBB02B21B0DEA1001B0E16 /* I2UDataManager.swift */,
 				D6BFA53421B4E0FB00ED251F /* QCloudMacOS-Bridging-Header.h */,
 				D6BFA53721B530C500ED251F /* I2UExtension.swift */,
+				D625369621BA208C0014E5EF /* I2UCompressUtility.swift */,
 			);
 			path = Image2Url;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6EBB02A21B0DB90001B0E16 /* I2UUserDefaultsEnum.swift in Sources */,
+				D625369721BA208C0014E5EF /* I2UCompressUtility.swift in Sources */,
 				D6BFA53821B530C500ED251F /* I2UExtension.swift in Sources */,
 				D6EBB02C21B0DEA1001B0E16 /* I2UDataManager.swift in Sources */,
 				D657F831219D06CD006836D2 /* AppDelegate.swift in Sources */,

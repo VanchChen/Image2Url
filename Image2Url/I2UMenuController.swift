@@ -9,10 +9,6 @@
 import Cocoa
 
 class I2UMenuController: NSObject {
-    let maxFactor = 0.75
-    let maxSize = 500 * 1024
-    let maxWidth : CGFloat = 128.0
-    
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var compressMenuItem: NSMenuItem!
     @IBOutlet weak var signInMenuItem: NSMenuItem!
@@ -72,7 +68,7 @@ class I2UMenuController: NSObject {
                     compressData = imageData
                 } else {
                     do {
-                        compressData = try self.compressImage(imageData)
+                        compressData = try I2UCompressUtility.compressImage(imageData)
                     } catch CompressError.NoImage {
                         print("Image Not Exist")
                     } catch CompressError.NotKnown {
@@ -128,55 +124,6 @@ class I2UMenuController: NSObject {
         } else {
             signInMenuItem.title = "Sign In"
         }
-    }
-    
-    //MARK:- Compress Image
-    func compressImage(_ imageData: Data?) throws -> Data? {
-        guard var compressData = imageData else {
-            throw CompressError.NoImage
-        }
-        
-        if compressData.count == 0 {
-            throw CompressError.NoImage
-        }
-        
-        let rep = NSBitmapImageRep(data: compressData)
-        
-        var compressionFactor = 0.95
-        while compressData.count > maxSize &&
-            compressionFactor >= maxFactor {
-                let repData = rep?.representation(using: .jpeg, properties: [.compressionFactor : compressionFactor])
-                if repData == nil {
-                    throw CompressError.NotKnown
-                }
-                compressData = repData!
-                compressionFactor -= 0.05
-        }
-        
-        if compressData.count == 0 {
-            throw CompressError.NotKnown
-        }
-        
-        if compressData.count < maxSize {
-            return compressData
-        }
-        
-        //resize
-        guard let image = NSImage(data: compressData) else {
-            throw CompressError.NotKnown
-        }
-        if image.size.width > maxWidth {
-            let newSize = NSSize(width: maxWidth, height: maxWidth / image.size.width * image.size.height)
-            
-            if let resizeData = image.resized(to: newSize),
-                resizeData.count < maxSize {
-                return resizeData
-            }
-            
-            throw CompressError.ResizeNotWork
-        }
-        
-        throw CompressError.OverSize(size: compressData.count)
     }
 }
 
