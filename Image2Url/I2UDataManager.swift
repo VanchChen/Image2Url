@@ -100,7 +100,7 @@ open class I2UDataManager : NSObject, QCloudSignatureProvider, NSUserNotificatio
                 print("upload error!")
             }
         }
-        QCloudCOSTransferMangerService.defaultCOSTransferManager().uploadObject(put as! QCloudCOSXMLUploadObjectRequest<AnyObject>)
+        QCloudCOSTransferMangerService.defaultCOSTransferManager().uploadObject(put as? QCloudCOSXMLUploadObjectRequest<AnyObject>)
     }
     
     public func userNotificationCenter(_ center: NSUserNotificationCenter, didActivate notification: NSUserNotification) {

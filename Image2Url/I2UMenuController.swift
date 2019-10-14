@@ -44,7 +44,7 @@ class I2UMenuController: NSObject {
             return;
         }
         
-        let signInWindowController = storyBoard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("SignInWindowController")) as! NSWindowController
+        let signInWindowController = storyBoard.instantiateController(withIdentifier: "SignInWindowController") as! NSWindowController
         signInWindowController.window!.orderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
         
@@ -93,7 +93,7 @@ class I2UMenuController: NSObject {
     
     //MARK:- Worker Methods
     func setupPanel() {
-        let image = NSImage(named: NSImage.Name(rawValue: "Menu"))
+        let image = NSImage(named: "Menu")
         image?.isTemplate = true
         statusItem.button?.image = image
         statusItem.menu = statusMenu

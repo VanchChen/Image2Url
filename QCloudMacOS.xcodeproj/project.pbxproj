@@ -242,8 +242,6 @@
 		D6BFA49121B4DD8D00ED251F /* QCloudCOSXMLService+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = D6BFA2E321B4DD8C00ED251F /* QCloudCOSXMLService+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D6BFA49221B4DD8D00ED251F /* QCloudCOSXMLServiceUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = D6BFA2E421B4DD8C00ED251F /* QCloudCOSXMLServiceUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D6BFA49321B4DD8D00ED251F /* NSString+RegularExpressionCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BFA2E521B4DD8C00ED251F /* NSString+RegularExpressionCategory.m */; };
-		D6BFA49421B4DD8D00ED251F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6BFA2E621B4DD8C00ED251F /* README.md */; };
-		D6BFA49521B4DD8D00ED251F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6BFA2E821B4DD8C00ED251F /* README.md */; };
 		D6BFA49621B4DD8D00ED251F /* QCloudSupervisoryRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BFA2ED21B4DD8C00ED251F /* QCloudSupervisoryRecord.m */; };
 		D6BFA49721B4DD8D00ED251F /* QCloudSupervisorySession.h in Headers */ = {isa = PBXBuildFile; fileRef = D6BFA2EE21B4DD8C00ED251F /* QCloudSupervisorySession.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D6BFA49821B4DD8D00ED251F /* QCloudSDKModuleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BFA2EF21B4DD8C00ED251F /* QCloudSDKModuleManager.m */; };
@@ -639,8 +637,6 @@
 		D6BFA2E321B4DD8C00ED251F /* QCloudCOSXMLService+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "QCloudCOSXMLService+Private.h"; sourceTree = "<group>"; };
 		D6BFA2E421B4DD8C00ED251F /* QCloudCOSXMLServiceUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCloudCOSXMLServiceUtilities.h; sourceTree = "<group>"; };
 		D6BFA2E521B4DD8C00ED251F /* NSString+RegularExpressionCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RegularExpressionCategory.m"; sourceTree = "<group>"; };
-		D6BFA2E621B4DD8C00ED251F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		D6BFA2E821B4DD8C00ED251F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D6BFA2ED21B4DD8C00ED251F /* QCloudSupervisoryRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCloudSupervisoryRecord.m; sourceTree = "<group>"; };
 		D6BFA2EE21B4DD8C00ED251F /* QCloudSupervisorySession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCloudSupervisorySession.h; sourceTree = "<group>"; };
 		D6BFA2EF21B4DD8C00ED251F /* QCloudSDKModuleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCloudSDKModuleManager.m; sourceTree = "<group>"; };
@@ -840,7 +836,6 @@
 			isa = PBXGroup;
 			children = (
 				D6BFA1F721B4DD8B00ED251F /* QCloudCOSXML */,
-				D6BFA2E621B4DD8C00ED251F /* README.md */,
 			);
 			path = QCloudCOSXML;
 			sourceTree = "<group>";
@@ -1121,7 +1116,6 @@
 		D6BFA2E721B4DD8C00ED251F /* QCloudCore */ = {
 			isa = PBXGroup;
 			children = (
-				D6BFA2E821B4DD8C00ED251F /* README.md */,
 				D6BFA2E921B4DD8C00ED251F /* QCloudCore */,
 			);
 			path = QCloudCore;
@@ -1839,6 +1833,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = D6BFA1E121B4DD3500ED251F;
 			productRefGroup = D6BFA1EC21B4DD3500ED251F /* Products */;
@@ -1855,8 +1850,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6BFA49521B4DD8D00ED251F /* README.md in Resources */,
-				D6BFA49421B4DD8D00ED251F /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
